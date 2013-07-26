@@ -1,0 +1,1034 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the ``??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+\RequirePackage[T1]{fontenc}
+
+% LaTeX will typeset using Computer Modern Roman, which a lot of
+% non-mathematicians and non-engineers won't like. Also, a few PDF
+% viewers may not render CMR very well. Instead, Times New Roman can
+% be used. That's what this package does.
+\usepackage{times}
+
+% The automated optical recognition software used to digitize resume
+% information works best with fonts that do not have serifs. This
+% command uses a sans serif font throughout. Uncomment both lines (or at
+% least the second) to restore a Roman font (i.e., a font with serifs).
+% (NOTE: This requires the times package above)
+%\renewcommand{\familydefault}{\sfdefault}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+
+% This package helps LaTeX auto-hyphenate hyphenated words if you use
+% special hyphens. For example, bio\-/mimicry will properly hyphenate
+% ``mimicry'' if necessary.
+\usepackage[shortcuts]{extdash}
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+% Provides special list environments and macros to create new ones
+\usepackage[shortlabels]{enumitem}
+
+% Simpler bibsections for CV sections
+% (thanks to natbib for inspiration)
+%
+% * For lists of references with hanging indents and no numbers:
+%
+%   \begin{bibsection}
+%       \item ...
+%   \end{bibsection}
+%
+% * For numbered lists of references (with hanging indents):
+%
+%   \begin{bibenum}
+%       \item ...
+%   \end{bibenum}
+%
+%   Note that bibenum numbers continuously throughout. To reset the
+%   counter, use
+%
+%   \restartlist{bibenum}
+%
+%   at the place where you want the numbering to reset.
+
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newlist{bibsection}{itemize}{3}
+\setlist[bibsection]{label=,leftmargin=\bibhang,%
+        itemindent=-\bibhang,
+        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\newlist{bibenum}{enumerate}{3}
+\setlist[bibenum]{label=[\arabic*],resume,leftmargin={\bibhang+\widthof{[999]}},%
+        itemindent=-\bibhang,
+        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\let\oldendbibenum\endbibenum
+\def\endbibenum{\oldendbibenum\vspace{-.6\baselineskip}}
+\let\oldendbibsection\endbibsection
+\def\endbibsection{\oldendbibsection\vspace{-.6\baselineskip}}
+\makeatother
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% HEADING AT TOP OF CURRICULUM VITAE
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ``right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ``name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ``Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[{\includegraphics[height=1.5in]{my_picture}}]{Your Name}
+%
+% the picture will be flush right across from the name. For this example
+% to work, make sure the extra set of curly braces is included. Also
+% makes ure that \usepackage{graphicx} is somewhere in the preamble.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+%%% SECTION HEADINGS
+
+% The section headings. Flush left in small caps down pseudo-margin.
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\hyphenpenalty=10000\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+%%% LISTS
+
+% This macro alters a list by removing some of the space that follows the list
+% (is used by lists below)
+\newcommand*\fixendlist[1]{%
+    \expandafter\let\csname preFixEndListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixEndListend#1\endcsname\vspace{-0.6\baselineskip}}}
+
+% These macros help ensure that items in outer-type lists do not get
+% separated from the next line by a page break
+% (they are used by lists below)
+\let\originalItem\item
+\newcommand*\fixouterlist[1]{%
+    \expandafter\let\csname preFixOuterList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\def\item{\pagebreak[2]\oldItem}\csname preFixOuterList#1\endcsname}
+    \expandafter\let\csname preFixOuterListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\let\item\oldItem\csname preFixOuterListend#1\endcsname}}
+\newcommand*\fixinnerlist[1]{%
+    \expandafter\let\csname preFixInnerList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\let\item\originalItem\csname preFixInnerList#1\endcsname}
+    \expandafter\let\csname preFixInnerListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixInnerListend#1\endcsname\let\item\oldItem}}
+
+% An itemize-style list with lots of space between items
+%
+% Usage:
+%   \begin{outerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{outerlist}
+\newlist{outerlist}{itemize}{3}
+    \setlist[outerlist]{label=\enskip\textbullet,leftmargin=*}
+    \fixendlist{outerlist}
+    \fixouterlist{outerlist}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{lonelist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{lonelist}
+\newlist{lonelist}{itemize}{3}
+    \setlist[lonelist]{label=\enskip\textbullet,leftmargin=*,partopsep=0pt,topsep=0pt}
+    \fixendlist{lonelist}
+    \fixouterlist{lonelist}
+
+% An itemize-style list with little space between items
+%
+% Usage:
+%   \begin{innerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{innerlist}
+\newlist{innerlist}{itemize}{3}
+    \setlist[innerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixinnerlist{innerlist}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{loneinnerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{loneinnerlist}
+\newlist{loneinnerlist}{itemize}{3}
+    \setlist[loneinnerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixendlist{loneinnerlist}
+    \fixinnerlist{loneinnerlist}
+
+%%% EXTRA SPACE
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+%%% FORMATTING MACROS
+
+% Provides a linked \doi{#1} that links doi:#1 to http://dx.doi.org/#1
+\usepackage{doi}
+% To change the text before the DOI, adjust this command
+%\renewcommand\doitext{doi:}
+
+% Provides a linked \url{#1} that doesn't require escape characters
+\usepackage{url}
+
+% You can adjust the style \url{} uses here:
+% (options are: same, rm, sf, tt; defaults to tt)
+\urlstyle{same}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+% (uncomment to typeset the e\-/mail address in typewriter font;
+%  otherwise, will be typeset in the \urlstyle above)
+%\DeclareUrlCommand\emaillink{\urlstyle{tt}}
+\providecommand*\emaillink[1]{\nolinkurl{#1}}
+\providecommand*\email[1]{\href{mailto:#1}{\emaillink{#1}}}
+
+\providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em \TeX}}
+\providecommand\Matlab{\textsc{Matlab}}
+
+% Custom hyphenation rules for words that LaTeX has trouble with
+\hyphenation{bio-mim-ic-ry bio-in-spi-ra-tion re-us-a-ble pro-vid-er Media-Wiki}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\makeheading{Kristine M.~Yu}
+
+\section{Contact Information}
+
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table. Table is one row made up of three parboxes. The left
+%       parbox has address info, the middle parbox has a vertical bar,
+%       and the right parbox has phone and electronic contact
+%       information.
+%
+% MACROS: \rcollength is the width of the right column of the table
+%             (adjust it to your liking; default is 1.85in).
+%         \spacewidth is width of area between left and right boxes.
+%
+\newlength{\rcollength}\setlength{\rcollength}{2in}%
+\newlength{\spacewidth}\setlength{\spacewidth}{20pt}
+%
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength-\spacewidth}@{}p{\spacewidth}@{}p{\rcollength}}%
+
+% Address box
+\parbox{\textwidth-\rcollength-\spacewidth}{%
+Assistant Professor\\
+\href{http://www.umass.edu/linguistics}{Department of Linguistics}\\
+\href{http://www.umass.edu}{University of Massachusetts Amherst}\\
+150 Hicks Way\\
+Amherst, MA 01003  USA}
+
+&
+% Uncomment to add a vertical bar in middle of contact information
+%{\vrule width 0.5pt}
+\parbox[m][5\baselineskip]{\spacewidth}{} &
+
+% Non-snail-mail contact information
+\parbox{\rcollength}{%
+\textit{Phone:} +1-413-545-0885 \\
+\textit{Fax:} +1-413-545-2792 \\
+\textit{E-mail:} \email{krisyu@linguist.umass.edu}\\
+\textit{WWW:} \href{http://www.krisyu.org/}{www.krisyu.org}}
+
+\end{tabular}
+
+%%
+%% In modern CV's, it seems like ``Objective'' is frowned upon. Instead,
+%% incorporate it into a well-constructed cover letter. The ``More
+%% information'' can go at the end of the CV, but it should not distract
+%% from the section giving references available to contact.
+%%
+%
+% \section{Objective}
+%
+% Placement in an academic position (i.e., faculty, postdoctoral, or
+% research scientist) that allows for advanced research in distributed
+% complex adaptive systems (i.e., modeling, analysis, design, and
+% verification) with a particular focus on the control of engineered
+% agents (e.g., for communications, control, software, electronics, and
+% sustainability) and the analysis of biological phenomena (e.g.,
+% self-organization, ecological rationality)
+% \begin{innerlist}
+% \item More information and auxiliary documents can be found at\\\url{http://www.tedpavlic.com/facjobsearch/}
+% \end{innerlist}
+
+\section{Research Interests}
+
+\textbf{Prosody, from the speech signal on up:}
+tone, intonation, phonetics, phonology, mathematical modeling of
+speech, language learning and variation, human language processing
+
+\section{Academic Appointments}
+
+\textbf{Assistant Professor} \hfill {September 2011 -- present}
+\begin{innerlist}
+
+    \item[] \href{http://www.umass.edu/linguist}{Department of Linguistics},
+            \href{http://www.umass.edu/linguist}{University of Massachusetts}
+    \begin{innerlist}
+        \item Affiliations:
+            \begin{innerlist}[\enskip$\circ$,leftmargin=*]
+                \item \href{http://blogs.umass.edu/icesl/}{Institute for Computational and Experimental Study of Language}
+                \item {UMass Phonetics Lab}
+            \end{innerlist}
+    \end{innerlist}
+
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Postdoctoral Researcher} \hfill {September 2011 -- June 2012}
+\begin{innerlist}
+
+    \item[] \href{http://ling.umd.edu/}{Department of Linguistics},
+            \href{http://www.umd.edu}{University of Maryland College Park}
+
+\end{innerlist}
+
+\section{Education}
+
+\href{http://www.ucla.edu}{\textbf{University of California Los Angeles}},
+Los Angeles, CA
+\begin{outerlist}
+
+\item[] Ph.D.,
+        \href{http://www.linguistics.ucla.edu}
+             {Linguistics},
+             September 2011
+        \begin{innerlist}
+        \item Thesis Topic: \href{http://www.linguistics.ucla.edu/general/dissertations/yudissertationucla2011.pdf}{The learnability of tones from the speech signal}
+        \item Advisers:
+              \href{http://www.linguistics.ucla.edu/people/stabler/}
+                   {Professor Edward Stabler}, 
+              \href{http://www.linguistics.ucla.edu/people/Sundara/}
+                   {Professor Megha Sundara}
+        \end{innerlist}
+
+\item[] M.A.,
+        \href{http://www.linguistics.ucla.edu}
+             {Linguistics},
+             December 2008
+        \begin{innerlist}
+        \item Thesis Topic: \href{http://www.linguistics.ucla.edu/general/matheses/Yu_UCLA_MA_2008.pdf}{The prosody of second position clitics and focus in Zagreb Croatian}
+        \item Adviser:
+              \href{http://www.linguistics.ucla.edu/people/jun/sun-ah.htm}
+                   {Professor Sun-Ah Jun}
+        \end{innerlist}
+
+\end{outerlist}
+
+
+\halfblankline
+
+
+\href{http://www.uni-magdeburg.de/en/home-p-1.html}{\textbf{Otto-von-Guericke-Universit\"{a}t
+  Magdeburg}},
+Magdeburg, Germany
+\begin{outerlist}
+
+\item[] \href{http://www.fulbright.de/togermany/}{Fulbright scholar},
+        \href{http://www.biophysik.ovgu.de/}
+             {Abteilung Biophysik}, September 2004 -- August 2005
+        \begin{innerlist}
+        \item Synchronization of glycolytic oscillations in yeast cell populations
+        \end{innerlist}
+
+\end{outerlist}
+
+\halfblankline
+
+\href{http://www.stanford.edu}{\textbf{Stanford University}},
+Stanford, CA
+\begin{outerlist}
+
+\item[] B.S.
+        \href{http://chemistry.stanford.edu/}
+             {Chemistry}, 
+             June 2004
+        \begin{innerlist}
+        \item With distinction
+        \item Minor in physics
+        \end{innerlist}
+
+\end{outerlist}
+
+\halfblankline
+
+\href{http://www.usc.edu}{\textbf{University of Southern California}},
+Los Angeles, CA
+\begin{outerlist}
+
+\item[] 
+        August 2000 -- May 2001
+        \begin{innerlist}
+        \item Trustee Scholar
+        \item Resident Honors Program
+        \end{innerlist}
+
+\end{outerlist}
+
+
+% \section{Submitted Journal Publications}
+%
+% % Add a little space to nudge next ``Ref'd Journal Publications'' marginpar
+% % down to make room for tall ``Submitted Journal Publications''
+% % marginpar. If there are enough submitted journal publications, this
+% % space will not be needed (and should be removed).
+% \vspace{0.1in}
+
+
+\section{Honors}
+
+\href{http://www.nsf.gov/}{\textbf{National Science Foundation}}
+\begin{innerlist}
+\item \href{http://www.nsf.gov/grfp}
+           {Graduate Research Fellowship}, 2008 -- 2011
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Ohio State University Research Foundation}
+\begin{innerlist}
+\item \href{http://www.cse.ohio-state.edu/mlss09/}{Machine Learning Summer School/Workshop 2009} Travel Grant
+\end{innerlist}
+
+\halfblankline
+
+\href{http://www.ucla.edu}{\textbf{University of California Los Angeles}}
+\begin{innerlist}
+\item Department of Linguistics \href{http://www.linguistics.ucla.edu/general/LadefogedScholarship/}{Ladefoged Scholarship Award}, 2010
+\item Graduate Research Mentorship Program Fellowship, 2007 -- 2008 
+\item Summer Graduate Research Mentorship Program Fellowhip, 2007, 2008
+\item Linguistic Society of America Linguistic Institute Fellowship, 2007
+\item Humanities Dean's Fellowship, 2006 -- 2007
+\end{innerlist}
+
+\halfblankline
+
+\href{http://www.iie.org/fulbright}{\textbf{Institute of International
+    Education Fulbright Program}}
+\begin{innerlist}
+\item \href{http://www.fulbright.de/togermany/}
+           {Fulbright Scholarship, Germany}, 2004 -- 2005
+\item \href{http://www.fulbright.de/togermany/}
+           {Fulbright Enterprise Scholarship, Germany} (4/107 grantees
+           selected), 2004 -- 2005
+\end{innerlist}
+
+\halfblankline
+
+\href{https://www.daad.org/}{\textbf{Deutscher Akademischer Austausch Dienst}}
+\begin{innerlist}
+\item \href{https://www.daad.org/?p=73215}
+           {DAAD study scholarship}, 2004 (Declined)
+\end{innerlist}
+
+\halfblankline
+
+\href{http://www.act.org/goldwater/}{\textbf{Barry Goldwater Scholarship and Excellence in Education Program}}
+\begin{innerlist}
+\item {Barry Goldwater scholarship}, 2003
+\end{innerlist}
+
+\section{Grants}
+
+\begin{bibsection}
+
+    \item Andrew Mellon Foundation / Center for Teaching \& Faculty
+      Development at the University of Massachusetts Amherst, ``Five
+      Colleges Prosody Community'', \$10,000, 2013 -- 2014.
+
+    \item Consultant,
+        ``Effects of Syntactic Constituency on Phonology and Phonetics
+        of Tone'' \linebreak[4] (PI: Lisa Selkirk), NSF,
+        \href{http://www.nsf.gov/div/index.jsp?div=bcs}{Behavioral and
+          Cognitive Sciences}, Award
+        \href{http://www.nsf.gov/awardsearch/showAward?AWD_ID=1147083}{1147083},
+        \$361,283.00, July 1,~2012 -- December 31,~2015.
+
+\end{bibsection}
+
+\section{Refereed Journal Publications}
+
+\begin{bibenum}
+    \item Yu, Kristine M. (Under review). Temporal resolution in the perception of
+      {C}antonese tone.
+
+    \item Yu, Kristine M. (Under review). The experimental state of mind in
+      elicitation: illustrations from tonal fieldwork. \emph{Language Documentation \&
+        Conservation}. 
+      [\href{https://github.com/krismyu/ldc-kiy/blob/master/paper/kiy.pdf?raw=true}{manuscript},
+      \href{http://www.krisyu.org/resources/}{supplementary materials}]
+
+    \item Zuraw, Kie Ross, Yu, Kristine M., and Robyn
+      Orfitelli. (Under review). Word-level prosody of
+      {S}amoan. \emph{Phonology}.
+
+    \item  J. Liu, S. Louie, W. Hsu, \textbf{K. M.~Yu},
+      H. B. Nicholas, and G. L. Rosenquist. (2008). Tyrosine
+        sulfation is prevalent in human chemokine receptors important
+        in lung disease. \emph{American Journal of Respiratory Cell and Molecular Biology}, 38:
+      738--743. \doi{10.1165/rcmb.2007-0118OC} 
+
+      \item Y. R. Thorstenson, A. Roxas, R. Kroiss, M. A. Jenkins,
+        \textbf{K. M.~Yu}, T. Bachrich, D.  Muhr, T. L. Wayne, G. Chu,
+        R. W. Davis, T. M. U. Wagner, and P. J. Oefner. (2003). 
+        Contributions of \textit{ATM} mutations to familial breast and
+        ovarian cancer. \emph{Cancer Research}, 63:
+        3325--3333. \url{http://cancerres.aacrjournals.org/cgi/content/abstract/63/12/3325}  
+
+    \item A. S. Torralba, \textbf{K. Yu}, P. Shen, P. J. Oefner, and
+      J. Ross. (2003). Experimental
+        test of a method for determining causal connectivities of
+        species in reactions. \textit{Proc. Natl. Acad. Sci. USA},
+      100: 1494--1498. \doi{10.1073/pnas.262790699}
+
+    \item \textbf{K. M.~Yu}, J. Liu, R. Moy, H. C. Lin,
+      H. B. Nicholas, and G. L Rosenquist. (2002). Prediction of
+      tyrosine sulfation in seven-transmembrane peptide receptors.
+    \emph{Endocrine}, 19: 333--337. \doi{10.1385/ENDO:19:3:333} 
+
+    \item S. \v{S}ale, R. Sung, P. Shen, \textbf{K. Yu}, Y. Wang,
+      G. Duran, J. Kim, T. Fojo, P. J. Oefner, and
+      B. I. Sikic. (2002). Conservation
+        of the class I $\beta$-tubulin gene in human populations and
+        lack of mutations in lung cancers and paclitaxel-resistant
+        ovarian cancers. \emph{Molecular Cancer Therapeutics}, 1:
+        215--225. \url{http://mct.aacrjournals.org/content/1/3/215.short} 
+
+\end{bibenum}
+
+% Add a little space to nudge next ``Conference Publications'' marginpar
+% down to make room for tall ``Submitted Conference Publications''
+% marginpar. If there are enough submitted journal publications, this
+% space will not be needed (and should be removed).
+\vspace{0.1in}
+
+\section{Book Chapters}
+
+\restartlist{bibenum}
+\begin{bibenum}
+    \item Kuo, Grace C.-H. and Kristine M.~Yu. (2012). Taiwan Mandarin
+ quantifiers. In \emph{Handbook of Quantifiers in Natural  Language},
+ ed.\ Edward Keenan and Denis Paperno, pp.\ 647 --
+ 698. \doi{10.1007/978-94-007-2681-9_12} [\href{http://www.krisyu.org/output/kuo-yo-taiwan-mandarin-quantifiers.pdf}{pdf}] 
+
+\end{bibenum}
+
+\section{Conference Proceedings}
+
+\restartlist{bibenum}
+\begin{bibenum}
+
+    \item Yu, Kristine M. (2011). Temporal resolution in {C}antonese tone
+      perception. In: \emph{Proceedings of The Psycholinguistic Representation of Tone}.
+
+    \item Yu, Kristine M. and Hiu Wai Lam. (2011). The role of creaky
+      voice in {C}antonese tonal perception. In: \emph{Proceedings of the
+        17th International Congress of Phonetic Sciences},
+      2240 -- 2243. [\href{http://www.icphs2011.hk/resources/OnlineProceedings/RegularSession/Yu,%20Kristine/Yu,%20Kristine.pdf}{pdf}] 
+
+    \item Shue, Yen-Liang, Keating, Patricia, Vicenik, Chad, and Kristine
+      Yu. (2011). VoiceSauce: a program for voice analysis. In:
+      \emph{Proceedings of the 17th International Congress of Phonetic
+        Sciences}
+      1846 -- 1849. [\href{http://www.icphs2011.hk/resources/OnlineProceedings/RegularSessio
+        n/Shue/Shue.pdf}{pdf}]
+
+    \item Yu, Kristine M. Laryngealization and features for Chinese
+      tonal recognition. (2010). In: \emph{Proceedings of Interspeech 2010},
+      1529 --
+      1532. [\href{http://www.isca-speech.org/archive/interspeech_2010/i10_1529.html}{web}, \href{http://www.krisy.org/output/yu2010-interspeech-laryngealization.pdf}{pdf}]
+
+    \item Yu, Kristine M. (2011). The sound of ergativity:
+      morphosyntax-prosody mapping in Samoan. In: Suzi Lima, Kevin
+      Mullin, Brian Smith, eds., \emph{Proceedings of the 39th Annual
+      Meeting of the North East Linguistic Society}, Vol.\ 2, Graduate
+    Linguistic Student Association, Amherst,
+    MA, pps.\ 825 -- 838. [\href{http://www.krisyu.org/output/yu2011-nels39-samoan.pdf}{pdf}]
+
+    \item Yu, Kristine M. (2009). The prosody of second position
+      clitics and focus in Zagreb Croatian. In: Maria Babyonyshev,
+      Daria Kavitskaya, Jodi Reich, eds., \emph{Formal Approaches to Slavic Linguistics \#17: 
+The Yale Meeting 2008.}, Michigan Slavic Publications, Ann Arbor, MI,
+pps.\ 253 -- 270. [\href{http://www.krisyu.org/yu2009-fasl17-croatian-2pc.pdf}{pdf}]  
+
+\end{bibenum}
+
+\section{Technical Reports}
+
+\restartlist{bibenum}
+\begin{bibenum}
+
+  \item Yu, Kristine M. (2010). Representational maps from the speech signal to
+phonological categories: a case study with lexical tones. In: Thomas
+Graf, ed., {UCLA} Working Papers in Linguistics, Papers in Mathematical Linguistics 1,
+Volume 15, Article 5: 1 -- 30. [\href{http://www.linguistics.ucla.edu/faciliti/wpl/issues/wpl15/papers/15-5.pdf}{pdf}]
+
+\end{bibenum}
+
+\section{Popular\linebreak[4]Articles}
+
+\restartlist{bibenum}
+\begin{bibenum}
+
+\item Kristine M.~Yu, Sameer ud Dowla Khan, Alejandrina Cristia, Huei-Mei
+Liu, Megha Sundara (2011). \href{http://www.acoustics.org/press/162nd/Yu_5aSCa3.html}{The
+  joint purpose of pitch patterns in "motherese": drawing attention
+  and conveying language structure.} ASA Lay Language Papers 162nd Acoustical Society of America Meeting. 
+
+\end{bibenum}
+
+\section{Invited Talks}
+
+\restartlist{bibenum}
+\begin{bibenum}
+
+    \item Yu, Kristine M. (2013). TBD. Stonybrook University
+      Linguistics Colloquium. September 2013.
+
+    \item Yu, Kristine M. (2012). The learnability of tones from the
+      speech signal. New York University Linguistics Colloquium. November 30, 2012. 
+
+    \item Yu, Kristine M. (2012). Samoan morphosyntax-prosody
+      mapping. University of Maryland Linguistics Colloquium. February
+      3, 2012.
+
+    \item Yu, Kristine M. (2011). The learnability of tones from the
+      speech signal. Macquarie University Linguistics
+      Colloquium. November 30, 2011.  
+
+    \item Yu, Kristine M. (2011). Speech rhythm and
+      acquisition. Macquarie University Child Language Lab. November 29, 2011. 
+
+    \item Yu, Kristine M. (2011). The learnability of tones from the
+      speech signal. Harvard University Linguistics
+      Colloquium. November 15, 2011.
+
+    \item Yu, Kristine M. (2011). The learnability of tones from the
+      speech signal. University of California San Diego Linguistics
+      Colloquium. November 7, 2011. 
+
+    \item Yu, Kristine M. (2011) The learnability of language-specific
+      f0-based rhythmic patterns. 162nd meeting of the Acoustical
+      Society of America. November 4, 2011. 
+
+    \item Yu, Kristine M. (2011). The learnability of tones from the
+      speech signal. Northeast Computational Phonology Circle. Yale
+      University. October 15, 2011.   
+
+    \item Yu, Kristine M. (2011). The learnability of tones from the
+      speech signal. University of Delaware Linguistics and Cognitive
+      Science Colloquium. October 7, 2011. 
+
+    \item Yu, Kristine M. (2011). Studying language learning from the
+      speech signal. Institute for Computational and Experimental
+      Study of Language Launch, University of Massachusetts, Amherst, April 1, 2011.
+
+    \item Yu, Kristine M. (2011). How to study how tones are learned. Workshop on how to
+      study a tone language: from the first elicitation to the latest
+      software. University of California, Berkeley, February 21, 2011.
+
+    \item Yu, Kristine M. (2011). Inductive biases for learning
+      phonological categories. University of Massachusetts, Amherst, February 15, 2011. 
+
+    \item Yu, Kristine M. (2011). Discovering the intonational
+      phonology of Samoan: a fieldwork tutorial. University of
+      Massachusetts, Amherst, February 14, 2011.  
+
+    \item Yu, Kristine M. (2009). The sound of ergativity: morphosyntax-prosody mapping in
+      Samoan. University of Chicago Workshop on Language, Cognition,
+      and Computation, June 5, 2009.
+
+\end{bibenum}
+
+\section{Refereed Conference and Workshop Presentations}
+
+\restartlist{bibenum}
+\begin{bibenum}
+
+  \item Yu, Kristine M., and Hiu Wai Lam. (2011). The role of creaky voice in Cantonese
+    tonal perception. International Congress of Phonetic Sciences XVII, Hong Kong, 2011.
+
+  \item Yu, Kristine M. (2011). Representations for learning
+    phonological categories. Linguistics Society of America,
+    Pittsburgh, PA, January 7, 2011.  
+
+  \item Yu, Kristine M. (2011). Coarse representations for phonemic
+    categories. North Eastern Linguistic Society 41, Philadelphia, PA,
+    October 23, 2010. 
+
+  \item Yu, Kristine M. (2009). The sound of ergativity: morphosyntax-prosody mapping in
+    Samoan. Austronesian Formal Linguistics Association XVI, UC Santa Cruz, CA.
+
+  \item Yu, Kristine M. (2009). The sound of ergativity: morphosyntax-prosody mapping in
+    Samoan. Linguistics Society of America, San Francisco, CA.
+
+  \item Yu, Kristine M. (2008). The sound of ergativity: morphosyntax-prosody mapping in
+    Samoan. North East Linguistic Society 39, Ithaca, NY. 
+
+  \item Zuraw, Kie, Orfitelli, Robyn, and Kristine
+    Yu. (2008). Word-level prosody of Samoan. Austronesian Formal
+    Linguistics Association XV, Sydney, Australia.  
+
+  \item Yu, Kristine. (2008). The prosody of second position clitics
+    and focus in Zagreb Croatian. Formal Approaches to Slavic
+    Linguistics 17, New Haven, CT, May 11, 2011. 
+
+\end{bibenum}
+
+\section{Conference Posters}
+
+\restartlist{bibenum}
+\begin{bibenum}
+
+\item Yu, Kristine M., Khan, Sameer ud Dowla and Megha Sundara. (2011). A cross-linguistic
+investigation of information structure in infant-directed
+speech. Experimental and Theoretical Approaches to Prosody, September 23, 2011.
+
+\item Khan, Sameer, Yu, Kristine~M., and Jaime Roemer. (2011). Speech rhythm and f0 patterns
+in Bengali: implications for prosodic acquisition. Acoustical
+Society of America, Seattle, WA, May 27, 2011.
+
+\item Yu, Kristine~M. (2011). Acoustic representations for tonal phonological
+categories. Acoustical Society of America, Seattle, WA, May
+23, 2011.
+
+\item Yu, Kristine~M. (2010). Laryngealization and features for Chinese tonal
+recognition. Interspeech 2010, Makuhari, Japan, September 14, 2010.
+
+\item Yu, Kristine. (2010). Linear separability and feature selection in the
+acquisition of tone. LabPhon 12, Albuquerque, NM, July 8, 2010.
+
+\item Lam, Hiu Wai and Kristine M.~Yu. (2010). The role of creaky voice quality in {C}antonese
+tonal perception. Acoustical Society of America, Baltimore,
+MD, April 23, 2010.
+
+\item Yu, Kristine~M., Lam, Hiu Wai, and Shing-Yin Li. (2010). An acoustic and
+electroglottographic study of {C}antonese tone. Acoustical
+Society of America, Baltimore, MD, April 23, 2010.
+
+\item Yu, Kristine~M. (2010). Linear separability and feature selection in the
+acquisition of tone. Computational Modelling of Sound Pattern
+Acquisition, University of Alberta, Feb. 14, 2010.
+
+\item Yu, Kristine~M. (2009). Contextual tonal variation in level tone
+languages. Acoustical Society of America, Portland, OR.
+
+\item Orfitelli, Robyn and Kristine Yu. (2009). The intonational phonology of Samoan. Austronesian Formal Linguistics Association XVI, UC Santa Cruz, CA.
+
+\item Yu, Kristine. (2008). The prosody of second position clitic placement and focus in Zagreb Croatian. Acoustics'08, Acoustical Society of America, Paris, France. 
+
+\end{bibenum}
+
+\section{Student Advising}
+
+\textbf{Doctoral dissertation committees} \hfill 
+
+\begin{innerlist}
+    \item Pizzo, Presley (in progress).
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Generals paper committees} \hfill 
+
+\begin{innerlist}
+    \item Conner, Tracy (in progress).
+    \item Fainleib, Yelena (in progress).
+    \item Nazarov, Aleksei (in progress).
+    \item Fainleib, Yelena (2013). \emph{Relative scaling of prosodic
+        boundaries size in sentence production}. 
+    \item Elsman, Minta (2013). \emph{Vowel devoicing and syllable position in Uzbek}.
+    \item Moore-Cantwell, Claire (2012). \emph{Syntactic probability influences duration}.
+\end{innerlist}
+
+\section{Teaching Experience}
+
+\href{http://www.umass.edu}{\textbf{University of Massachusetts Amherst}},
+Amherst, MA
+\begin{outerlist}
+
+\item[] \textit{Instructor}%
+    \hfill \textbf{September~2012 -- present}
+    \begin{innerlist}
+
+        \item \href{http://www.umass.edu/linguist/courses/detail.php?cid=627}{LINGUIST~490A}:
+          Speech Technology (Undergraduate)
+        \begin{innerlist}[\enskip$\circ$,leftmargin=*]
+            \item Spring~2014 (with Kate Silverstein)
+        \end{innerlist}
+
+        \halfblankline
+
+        \item \href{http://www.umass.edu/linguist/courses/detail.php?cid=631}{LINGUIST~751}:
+          Topics in Phonology (Graduate)
+        \begin{innerlist}[\enskip$\circ$,leftmargin=*]
+            \item Spring~2014 (co-taught with Brian Dillon; \emph{Uncovering hidden structure})
+        \end{innerlist}
+
+        \halfblankline
+
+        \item \href{http://www.umass.edu/linguist/courses/detail.php?cid=547}{LINGUIST~716}:
+          Topics in Phonetics (Graduate)
+        \begin{innerlist}[\enskip$\circ$,leftmargin=*]
+            \item Fall~2013 (co-taught with John Kingston; \emph{The structure of sound categories})
+        \end{innerlist}
+
+        \halfblankline
+
+        \item \href{http://www.umass.edu/linguist/courses/detail.php?cid=475}{LINGUIST~606}:
+          Phonological Theory (Graduate)
+        \begin{innerlist}[\enskip$\circ$,leftmargin=*]
+            \item Spring~2013
+        \end{innerlist}
+
+        \halfblankline
+
+        \item \href{http://www.umass.edu/linguist/courses/detail.php?cid=481}{LINGUIST~748}:
+          Structure of a non Indo-European Language (Graduate)
+        \begin{innerlist}[\enskip$\circ$,leftmargin=*]
+            \item Spring~2013 (co-taught with Alice Harris; Language: \href{http://www.ethnologue.com/language/dzo}{Dzongkha})
+        \end{innerlist}
+
+        \halfblankline
+
+        \item \href{http://www.umass.edu/linguist/courses/detail.php?cid=427}{LINGUIST~730}:
+          Proseminar Phonological Theory (Graduate)
+        \begin{innerlist}[\enskip$\circ$,leftmargin=*]
+            \item Fall~2012 (\emph{Prosodic theory})
+        \end{innerlist}
+
+    \end{innerlist}
+
+\end{outerlist}
+
+\halfblankline
+
+\href{http://www.umass.edu}{\textbf{University of California Los Angeles}},
+Los Angeles, CA
+\begin{outerlist}
+
+\item[] \textit{Instructor / course designer}%
+    \hfill \textbf{January 2009 -- June 2010}
+    \begin{innerlist}
+        \item LING 254A/B: Quantitative methods in linguistics (Graduate)
+        \begin{innerlist}[\enskip$\circ$,leftmargin=*]
+            \item Winter~2010 
+            \item Winter~2009 (with Megha Sundara and Kie Zuraw;
+              Statistics and R practicum)
+        \end{innerlist}
+    \end{innerlist}
+
+\item[] \textit{Teaching Assistant}%
+    \hfill \textbf{March 2009 -- December 2010}
+    \begin{innerlist}
+        \item LING 104: Experimental phonetics (Undergraduate)
+        \begin{innerlist}[\enskip$\circ$,leftmargin=*]
+            \item Fall~2010 (with Sun-Ah Jun)
+        \end{innerlist}
+        \item Honors Collegium 56: Language as a window to the mind (Undergraduate)
+        \begin{innerlist}[\enskip$\circ$,leftmargin=*]
+            \item Spring~2009 (with Susie Curtiss)
+        \end{innerlist}
+    \end{innerlist}
+
+\end{outerlist}
+
+\section{Professional Service}
+
+\textbf{Ad-hoc reviewing}
+
+\begin{outerlist}
+
+    \item[] \textit{Journals}%
+
+      \begin{innerlist}
+        \item \href{http://journals.cambridge.org/action/displayJournal?jid=IPA}{\emph{Journal of the International Phonetic Association}}, 2013
+        \item \href{http://nflrc.hawaii.edu/ldc/}{\emph{Language Documentation \& Conservation}}, 2013
+        \item \href{http://asadl.org/jasa/}{\emph{Journal of the Acoustical Society of America}}, 2011 -- 2013
+        \item \href{http://www.journals.elsevier.com/journal-of-phonetics/}{\emph{Journal of Phonetics}}, 2011
+      \end{innerlist}
+
+    \item[] \textit{Conferences}%
+
+      \begin{innerlist}
+        \item \emph{Phonology 2013}
+        \item \emph{Linguistic Society of America Annual Meeting},
+          2012 -- 2013
+        \item \emph{West Coast Conference on Formal Linguistics}, 2012
+      \end{innerlist}
+
+\end{outerlist}
+
+\section{Professional Memberships}
+
+\begin{innerlist}
+\item Linguistic Society of America (2007 -- present)
+\item Acoustical Society of America (2008 -- present)
+\item International Speech Communication Association (2008 -- present)
+\item Cognitive Science Society (2010 -- present)
+\end{innerlist}
+
+\section{Departmental service}
+
+\begin{innerlist}
+  \item Admissions Committee, 2012 -- 2013
+\end{innerlist}
+
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------%
+% The following is copyright and licensing information for
+% redistribution of this LaTeX source code; it also includes a liability
+% statement. If this source code is not being redistributed to others,
+% it may be omitted. It has no effect on the function of the above code.
+%----------------------------------------------------------------------%
+% Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
+%
+% Unless otherwise expressly stated, this work is licensed under the
+% Creative Commons Attribution-Noncommercial 3.0 United States License. To
+% view a copy of this license, visit
+% http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+% Creative Commons, 171 Second Street, Suite 300, San Francisco,
+% California, 94105, USA.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+% OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+% MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+% IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+% CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+% TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+% SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%----------------------------------------------------------------------%

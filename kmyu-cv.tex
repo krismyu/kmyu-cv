@@ -142,6 +142,8 @@
 % NOTE: uncomment the \pagestyle{empty} line to get rid of all page
 %       numbers (make sure includefoot is commented out above)
 %
+\usepackage{gitinfo} % Added by KY, for displaying git commit hash in
+                     % CV document
 \usepackage{fancyhdr,lastpage}
 \pagestyle{fancy}
 %\pagestyle{empty}      % Uncomment this to get rid of page numbers
@@ -154,7 +156,10 @@
        \parbox{4in}{\, \hfill %
                     \arabic{page} of \protect\pageref*{LastPage} % +LP
 %                    \arabic{page}                               % -LP
-                    \hfill \,}}
+                    \hfill \,}} 
+
+%KY added abbreviated git commit hash and ISO timestamp to footer
+\rfoot{{\footnotesize (commit \gitAbbrevHash, \,\gitAuthorIsoDate)}\hspace{\marginparwidth}}
 
 % Finally, give us PDF bookmarks
 \usepackage{color,hyperref}

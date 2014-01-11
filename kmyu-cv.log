@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  10 JAN 2014 20:00
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  10 JAN 2014 20:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -407,21 +407,21 @@ ogy and Pho-net-ics of Tone''
 [2]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\kernel@ifnextchar' on input line 706.
+(hyperref)                removing `\kernel@ifnextchar' on input line 705.
 
 [3] [4]
-Overfull \hbox (1.47888pt too wide) in paragraph at lines 840--843
+Overfull \hbox (1.47888pt too wide) in paragraph at lines 839--842
 []\T1/ptm/m/n/10 Yu, Kris-tine M. (2011). Acous-tic rep-re-sen-ta-tions for ton
 al phono-log-i-cal cat-e-gories. Acous-
  []
 
 [5] AED: lastpage setting LastPage 
 [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1029.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1029.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1028.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1028.
  (./kmyu-cv.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1029.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1029.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1028.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1028.
 
 Package rerunfilecheck Info: File `kmyu-cv.out' has not changed.
 (rerunfilecheck)             Checksum: 10E8F289277FEDE6ACB7AF8D689D97A0;1058.
@@ -440,7 +440,7 @@ xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
 live/2013/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2013/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2013/texmf-dist
 /fonts/type1/urw/times/utmri8a.pfb>
-Output written on kmyu-cv.pdf (6 pages, 89371 bytes).
+Output written on kmyu-cv.pdf (6 pages, 89367 bytes).
 PDF statistics:
  272 PDF objects out of 1000 (max. 8388607)
  256 compressed objects within 3 object streams

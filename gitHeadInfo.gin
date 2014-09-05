@@ -1,15 +1,15 @@
 \usepackage[%
-		shash={02029f2},
-		lhash={02029f2aa3f453a2941e59a35bd7060b908860ee},
+		shash={cf67e61},
+		lhash={cf67e613cf2f40299ea5bee8898122b7fdaa9a2f},
 		authname={Kristine M. Yu},
 		authemail={krisyu@linguist.umass.edu},
-		authsdate={2014-06-24},
-		authidate={2014-06-24 07:39:58 -0700},
-		authudate={1403620798},
+		authsdate={2014-09-04},
+		authidate={2014-09-04 20:40:47 -0400},
+		authudate={1409877647},
 		commname={Kristine M. Yu},
 		commemail={krisyu@linguist.umass.edu},
-		commsdate={2014-06-24},
-		commidate={2014-06-24 07:39:58 -0700},
-		commudate={1403620798},
+		commsdate={2014-09-04},
+		commidate={2014-09-04 20:40:47 -0400},
+		commudate={1409877647},
 		refnames={ (HEAD, master)}
 	]{gitsetinfo}

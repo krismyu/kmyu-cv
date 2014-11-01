@@ -168,6 +168,23 @@
             linkcolor=darkblue,urlcolor=darkblue,
             anchorcolor=darkblue,citecolor=darkblue}
 
+% KY added macro for allowing footnotemarks to refer to same footnote
+% https://tex.stackexchange.com/questions/10102/multiple-references-to-the-same-footnote-with-hyperref-support-is-there-a-bett
+
+\newcommand{\footlabel}[2]{%
+    \addtocounter{footnote}{1}%
+    \footnotetext[\thefootnote]{%
+        \addtocounter{footnote}{-1}%
+        \refstepcounter{footnote}\label{#1}%
+        #2%
+    }%
+    $^{\ref{#1}}$%
+}
+
+\newcommand{\footref}[1]{%
+    $^{\ref{#1}}$%
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -682,7 +699,7 @@ Los Angeles, CA
 
 \end{bibenum}
 
-\section{Conference Proceedings}
+\section{Refereed Conference Proceedings}
 
 \restartlist{bibenum}
 \begin{bibenum}
@@ -691,7 +708,7 @@ Los Angeles, CA
   Megha. (2014). Intonational phonology in Bengali and English
   infant-directed speech. Speech Prosody 2014. 1130-1133. [\href{http://www.krisyu.org/static/pages/output/yukhansundara2014.pdf}{pdf}]
 
-    \item Yu, Kristine M. (2011). The sound of ergativity:
+    \item Yu, Kristine M. (2011).\footlabel{abs}{Refereed abstract only.} The sound of ergativity:
       morphosyntax-prosody mapping in Samoan. In: Suzi Lima, Kevin
       Mullin, Brian Smith, eds., \emph{Proceedings of the 39th Annual
       Meeting of the North East Linguistic Society}, Vol.\ 2, Graduate
@@ -717,7 +734,7 @@ Los Angeles, CA
       1529 --
       1532. [\href{http://www.isca-speech.org/archive/interspeech_2010/i10_1529.html}{web}, \href{http://www.krisyu.org/static/pages/output/yu2010-interspeech-laryngealization.pdf}{pdf}]
 
-    \item Yu, Kristine M. (2009). The prosody of second position
+    \item Yu, Kristine M. (2009).\footref{abs} The prosody of second position
       clitics and focus in Zagreb Croatian. In: Maria Babyonyshev,
       Daria Kavitskaya, Jodi Reich, eds., \emph{Formal Approaches to Slavic Linguistics \#17: 
 The Yale Meeting 2008.}, Michigan Slavic Publications, Ann Arbor, MI,
@@ -860,7 +877,7 @@ Liu, Megha Sundara (2011). \href{http://www.acoustics.org/press/162nd/Yu_5aSCa3.
 
 \end{bibenum}
 
-\section{Conference Posters}
+\section{Refereed Conference Posters}
 
 \restartlist{bibenum}
 \begin{bibenum}

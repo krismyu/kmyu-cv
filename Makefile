@@ -5,5 +5,12 @@ cv:
 	open kmyu-cv.pdf
 	cp kmyu-cv.pdf website/home/
 
+short:
+	pdflatex kmyu-cv-short.tex
+	pdflatex kmyu-cv-short.tex
+	/bin/rm -fr *.log *.aux
+	open kmyu-cv-short.pdf
+	cp kmyu-cv-short.pdf website/home/
+
 clean:
-	/bin/rm -fr *.log *.aux *.pdf
+	/bin/rm -fr *.log *.aux *.pdf auto/ *.out

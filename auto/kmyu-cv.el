@@ -57,14 +57,14 @@
     "footpageshift"
     "rcollength"
     "spacewidth")
+   (LaTeX-add-color-definecolors
+    "darkblue")
    (LaTeX-add-enumitem-newlists
     '("bibsection" "itemize")
     '("bibenum" "enumerate")
     '("outerlist" "itemize")
     '("lonelist" "itemize")
     '("innerlist" "itemize")
-    '("loneinnerlist" "itemize"))
-   (LaTeX-add-color-definecolors
-    "darkblue"))
+    '("loneinnerlist" "itemize")))
  :latex)
 

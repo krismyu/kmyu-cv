@@ -3,7 +3,6 @@ cv:
 	pdflatex kmyu-cv.tex
 	/bin/rm -fr *.log *.aux
 	open kmyu-cv.pdf
-	cp kmyu-cv.pdf website/home/
 
 short:
 	pdflatex kmyu-cv-short.tex

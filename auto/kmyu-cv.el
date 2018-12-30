@@ -22,7 +22,7 @@
     "extdash"
     "geometry"
     "enumitem"
-    "gitinfo"
+    "gitinfo2"
     "fancyhdr"
     "lastpage"
     "color"
